@@ -51,9 +51,8 @@ SERVICE_ACCOUNT_FILE = "/root/.config/service_account.json"  # JSON bestand van 
 FOLDER_ID = "1EYf9den2D8IVAGvVDrH1ACp6C89z7p1f"  # Map-ID van je gedeelde Drive-map
 
 # Authenticatie met service account
-credentials = service_account.Credentials.from_service_account_file(
-    "/root/.config/service_account.json"
-)
+credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE)
+
 
 service = build("drive", "v3", credentials=credentials)
 
