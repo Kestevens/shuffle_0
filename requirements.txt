@@ -1,0 +1,16 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Installeer git en python packages
+RUN apt-get update && apt-get install -y git && \
+    apt-get clean
+
+# Clone de repo direct in de container
+RUN git clone https://github.com/Kestevens/shuffle_0.git .
+
+# Installeer afhankelijkheden
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Draai script
+CMD ["python", "google_auth.py"]
