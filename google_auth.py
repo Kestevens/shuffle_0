@@ -50,15 +50,12 @@ print(f"\n{output_file} is aangemaakt.")
 SERVICE_ACCOUNT_FILE = "/root/.config/service_account.json"  # JSON bestand van Google
 FOLDER_ID = "1EYf9den2D8IVAGvVDrH1ACp6C89z7p1f"  # Map-ID van je gedeelde Drive-map
 
-# Pad naar gemounte service account JSON
-SERVICE_ACCOUNT_FILE = "/root/.config/service_account.json"
-
-# Maak credentials aan
+# Authenticatie met service account
 credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE)
 
-
-
+# Maak Drive-service aan
 service = build("drive", "v3", credentials=credentials)
+
 
 # Upload bestand
 file_metadata = {
