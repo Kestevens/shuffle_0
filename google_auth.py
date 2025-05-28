@@ -47,7 +47,7 @@ print(f"\n{output_file} is aangemaakt.")
 # =============================
 
 # Configuratie
-SERVICE_ACCOUNT_FILE = "service_account.json"  # JSON bestand van Google
+SERVICE_ACCOUNT_FILE = "/root/.config/service_account.json"  # JSON bestand van Google
 FOLDER_ID = "1EYf9den2D8IVAGvVDrH1ACp6C89z7p1f"  # Map-ID van je gedeelde Drive-map
 
 # Authenticatie met service account
