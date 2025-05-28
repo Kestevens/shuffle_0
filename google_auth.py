@@ -52,8 +52,7 @@ FOLDER_ID = "1EYf9den2D8IVAGvVDrH1ACp6C89z7p1f"  # Map-ID van je gedeelde Drive-
 
 # Authenticatie met service account
 credentials = service_account.Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE,
-    scopes=["https://www.googleapis.com/auth/drive"]
+    "/root/.config/service_account.json"
 )
 
 service = build("drive", "v3", credentials=credentials)
