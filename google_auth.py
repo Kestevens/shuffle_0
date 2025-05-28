@@ -13,7 +13,7 @@ from googleapiclient.http import MediaFileUpload
 # =============================
 
 np.random.seed(42)
-num_records = 1000
+num_records = 100
 
 data = {
     "COUNTRY CODE": ["SE"] * num_records,
