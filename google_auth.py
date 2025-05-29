@@ -54,6 +54,8 @@ for country, number_func in country_mobile_formats.items():
         records.append([country, number, song, timestamp])
 
 df = pd.DataFrame(records, columns=["COUNTRY CODE", "MOBILE NUMBER", "SONG NUMBER", "TIMESTAMP"])
+# Display the first few rows
+print(df.head(100))
 df.to_csv(OUTPUT_FILE, index=False, sep="\t")
 
 print(f"📄 {OUTPUT_FILE} aangemaakt met {len(df)} stemmen uit {len(country_mobile_formats)} landen.")
