@@ -1,4 +1,5 @@
 # MULTICOUNTRY VOTE GENERATOR + GOOGLE DRIVE UPLOAD
+
 import os
 import json
 import pandas as pd
@@ -25,23 +26,18 @@ if not os.path.exists("shuffle_0"):
 
 # =============== LANDEN & FORMATEN ===============
 country_mobile_formats = {
-    "BE": "+32 4{0:02d} {1:03d} {2:03d}",
-    "FR": "+33 6 {0:02d} {1:02d} {2:02d} {3:02d}",
-    "DE": "+49 15{0:01d} {1:03d} {2:04d}",
-    "CH": "+41 7{0:01d} {1:03d} {2:02d} {3:02d}",
-    "IT": "+39 3{0:02d} {1:03d} {2:03d}",
-    "ES": "+34 6{0:01d} {1:02d} {2:02d} {3:02d}",
-    "MA": "+212 6{0:01d} {1:02d} {2:02d} {3:02d}",
-    "UK": "+44 7{0:02d} {1:03d} {2:04d}",
-    "SE": "+46 7{0:01d} {1:03d} {2:03d}",
-    "PT": "+351 9{0:02d} {1:03d} {2:03d}",
-    "NL": "+31 6 {0:02d} {1:03d} {2:03d}"
+    "BE": lambda: f"+32 4{random.randint(70,99)} {random.randint(100,999)} {random.randint(100,999)}",
+    "FR": lambda: f"+33 6 {random.randint(10,99)} {random.randint(10,99)} {random.randint(10,99)} {random.randint(10,99)}",
+    "DE": lambda: f"+49 15{random.randint(0,9)} {random.randint(100,999)} {random.randint(1000,9999)}",
+    "CH": lambda: f"+41 7{random.randint(0,9)} {random.randint(100,999)} {random.randint(10,99)} {random.randint(10,99)}",
+    "IT": lambda: f"+39 3{random.randint(10,99)} {random.randint(100,999)} {random.randint(100,999)}",
+    "ES": lambda: f"+34 6{random.randint(0,9)} {random.randint(10,99)} {random.randint(10,99)} {random.randint(10,99)}",
+    "MA": lambda: f"+212 6{random.randint(0,9)} {random.randint(10,99)} {random.randint(10,99)} {random.randint(10,99)}",
+    "UK": lambda: f"+44 7{random.randint(10,99)} {random.randint(100,999)} {random.randint(1000,9999)}",
+    "SE": lambda: f"+46 7{random.randint(0,9)} {random.randint(100,999)} {random.randint(100,999)}",
+    "PT": lambda: f"+351 9{random.randint(10,99)} {random.randint(100,999)} {random.randint(100,999)}",
+    "NL": lambda: f"+31 6 {random.randint(10,99)} {random.randint(100,999)} {random.randint(100,999)}"
 }
-
-def generate_mobile_number(country):
-    fmt = country_mobile_formats[country]
-    args = tuple(random.randint(0, 99) for _ in fmt.count('{'))
-    return fmt.format(*args)
 
 # =============== STEMDATA GENEREREN ===============
 random.seed(SEED)
@@ -49,10 +45,10 @@ np.random.seed(SEED)
 records = []
 now = datetime.now()
 
-for country in country_mobile_formats:
+for country, number_func in country_mobile_formats.items():
     for _ in range(VOTES_PER_COUNTRY):
         song = random.randint(1, 25)
-        number = generate_mobile_number(country)
+        number = number_func()
         time_offset = timedelta(seconds=random.randint(0, 3600))
         timestamp = (now - time_offset).strftime("%Y-%m-%dT%H:%M:%S")
         records.append([country, number, song, timestamp])
