@@ -55,8 +55,9 @@ for country, number_func in country_mobile_formats.items():
 
 df = pd.DataFrame(records, columns=["COUNTRY CODE", "MOBILE NUMBER", "SONG NUMBER", "TIMESTAMP"])
 # Display the first few rows
-print(df.head(100))
+print(df.head(10))
 df.to_csv(OUTPUT_FILE, index=False, sep="\t")
+print(df["COUNTRY CODE"].value_counts())
 
 print(f"📄 {OUTPUT_FILE} aangemaakt met {len(df)} stemmen uit {len(country_mobile_formats)} landen.")
 
